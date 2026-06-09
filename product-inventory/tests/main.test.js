@@ -15,7 +15,9 @@ test("handles edge case with price of 0", () => {
 
 // task 2
 test("Filtered array will be", () => {
-    expect(filterProducts([{name: laptop, price: 500}], )).toBe(90);
+    expect(filterProducts([{name: "laptop", price: 500}],
+        product => product.price > 100 )).toEqual([{name: "laptop", price: 500}]
+    );
 });
 
 test("handles an invalid discount rate gracefully", () => {

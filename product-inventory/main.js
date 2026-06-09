@@ -3,7 +3,7 @@ function calculateDiscount(price, discountRate) {
     if (typeof price !== 'number' || typeof discountRate !== 'number') return null;
     if (discountRate < 0 || discountRate > 1) return null;
     // TODO: Implement logic
-    const discountPrice = price - (price * (discountRate / 100));
+    const discountPrice = price - (price * discountRate);
     return discountPrice;
 }
 
