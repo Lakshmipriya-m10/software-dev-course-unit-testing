@@ -1,7 +1,4 @@
 
-//const products = [{name: laptop, price = 500}];
-  
-
 function calculateDiscount(price, discountRate) {
     if (typeof price !== 'number' || typeof discountRate !== 'number') return null;
     if (discountRate < 0 || discountRate > 1) return null;
@@ -11,21 +8,21 @@ function calculateDiscount(price, discountRate) {
 }
 
 
-function filterProducts(products, callback) {
+ function filterProducts(products, callback) {
     if (!Array.isArray(products) || typeof callback !== 'function') return [];
     // TODO: Implement filtering logic
-    const filteredArray = products.filter(product => product.price > 100);
-    return filteredArray; 
+  return products.filter(callback);
 }
 
 function sortInventory(inventory, key) {
     if (!Array.isArray(inventory) || typeof key !== 'string') return [];
     // TODO: Implement sorting logic
-    return inventory.sort((a ,b) => a[key] - b[key]);
+    return inventory.sort((a ,b) => a[key].localCompare (b[key]));
     
     //return [];
 }
-
+ 
 module.exports = { calculateDiscount, filterProducts, sortInventory };
+
 
 
