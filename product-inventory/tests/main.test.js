@@ -2,6 +2,7 @@
 const { calculateDiscount, sortInventory,filterProducts } = require("../main.js");
 
 //Task 1:calculateDiscount -positive, negative, and edge cases.
+describe("calculateDiscount", () => {
 test("applies a valid discount rate", () => {
     expect(calculateDiscount(100,0.10)).toBe(90);
 });
@@ -13,9 +14,11 @@ test("handles an invalid discount rate gracefully", () => {
 test("handles edge case with price of 0", () => {
     expect(calculateDiscount(0, 0.2)).toBe(0);
 });
+});
 
 
 // task 2 -filterProducts -positive, negative, and edge cases.
+describe("filterProducts", () => {
 test("Valid Filtered array will be", () => {
  
 const productPrice = [20, 30, 40, 60, 80, 100, 450];
@@ -25,6 +28,7 @@ const highPrice = filterProducts(productPrice, price => price > 100);
 expect(highPrice[0]).toBe(450);
 
 });
+
 
 test("invalid case with no item found", () => {
  
@@ -45,31 +49,33 @@ const highPrice = filterProducts(productPrice, price => price > 200);
 expect(highPrice[0]).toBe(undefined);
 
 });
-
+});
 // task 3 - sortInventory -positive, negative, and edge cases.
 const inventory = [
-    { name: "bella", category: "project Developer" },
-    { name: "ani", category: "frontEnd Developer" },
-    { name: "nancy", category: "dataAnalyst" }]
+    { name: "banana", quantity: 3},
+    { name: "apple", quantity: 5 },
+    { name: "kiwi", quantity: 6 }];
 
-test("Sort inventory - test valid case", () => {
-    console.log(sortInventory(inventory, "name"));
-    expect(sortInventory(inventory, "name")).toEqual
-    ([
-        { name: "ani", category: "frontEnd Developer" },
-        { name: "bella", category: "project Developer" },
-        { name: "nancy", category: "dataAnalyst" }
-    ]);
+describe("sortInventory", () => {
+test("Positive Test Case: Sort inventory - test valid case", () => {
+    
+    expect(sortInventory(inventory, "name")).toEqual([
+  { name: "apple", quantity: 5 },
+  { name: "banana", quantity: 3 },
+  { name: "kiwi", quantity: 6 }
+]);
 });
 
 
-test("Sort inventory - test invalid case", () => {
-    console.log(sortInventory(inventory, "age"));
-    expect(sortInventory(inventory, "name")).toBe(0);
+
+test("Negative Test Case: Sort inventory - test invalid case:", () => {
+    
+    expect(sortInventory("inventory", " ")).toEqual([]);
 });
     
-test("Sort inventory - test Edge case", () => {
-    console.log(sortInventory(inventory, ""));
-    expect(sortInventory(inventory, "name")).toBe(0);
-});
+test("Sort inventory - test Edge case with invalid key", () => {
     
+    expect(sortInventory(inventory, 1234)).toBe("Invalid input.");
+});
+ 
+});
