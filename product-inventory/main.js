@@ -15,9 +15,15 @@ function calculateDiscount(price, discountRate) {
 }
 
 function sortInventory(inventory, key) {
-    if (typeof inventory !== Array || typeof key !== 'number') return 0;
+    if (!Array.isArray(inventory)){
+        return [];
+    } 
+    if(typeof key !== 'string') {
+        return "Invalid input.";
+    }
+
     return [...inventory].sort((a, b) =>
-        a[key].localeCompare(b[key])
+        String(a[key]).localeCompare(String(b[key]))
     );
 }
 
