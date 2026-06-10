@@ -15,13 +15,12 @@ function calculateDiscount(price, discountRate) {
 }
 
 function sortInventory(inventory, key) {
-    if (!Array.isArray(inventory) || typeof key !== 'string') return [];
-    // TODO: Implement sorting logic
-    return inventory.sort((a ,b) => a[key].localCompare (b[key]));
-    
-    //return [];
+    if (typeof inventory !== Array || typeof key !== 'number') return 0;
+    return [...inventory].sort((a, b) =>
+        a[key].localeCompare(b[key])
+    );
 }
- 
+
 module.exports = { calculateDiscount, filterProducts, sortInventory };
 
 
